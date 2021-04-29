@@ -1,0 +1,100 @@
+Given a dictionary of words and a pattern. Every character in the pattern is uniquely mapped to a character in the dictionary. Find all such words in the dictionary that match the given pattern. 
+
+Example 1:
+
+Input:
+N = 4
+dict[] = {abb,abc,xyz,xyy}
+pattern  = foo
+Output: abb xyy
+Explanation: xyy and abb have the same
+character at index 1 and 2 like the
+pattern.
+Your Task:
+You don't need to read input or print anything. Your task is to complete the function findMatchedWords() which takes an array of strings dict[] consisting of the words in the dictionary and a string, Pattern and returns an array of strings consisting of all the words in the dict[] that match the given Pattern in lexicographical order.
+
+Expected Time Complexity: O(N*K) (where K is the length of the pattern).
+Expected Auxiliary Space: O(N).
+
+Constraints:
+1 <= N <= 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<string> findMatchedWords(vector<string> dict,string pattern);
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		vector<string> s(n);
+		for(int i=0;i<n;i++)
+		    cin>>s[i];
+		
+		string tt;
+		cin>>tt;
+		
+		vector<string> res = findMatchedWords(s,tt);
+        sort(res.begin(),res.end());
+		for(int i=0;i<res.size();i++)
+		    cout<<res[i]<<" ";
+		cout<<endl;
+		
+	}
+}// } Driver Code Ends
+
+
+/* The function returns a  vector of strings 
+present in the dictionary which matches
+the string pattern.
+You are required to complete this method */
+string tostring(string s){
+    map<char,int>mappi;
+    int i=0;
+    string res="";
+    for(char ch:s){
+    if(mappi.find(ch)==mappi.end())
+    mappi[ch]=i++;
+        
+        res=res+to_string(mappi[ch]);
+    }
+    return res; 
+}
+vector<string> findMatchedWords(vector<string> dict,string pattern)
+{
+    vector<string>v;
+    int len=pattern.length();
+    string hash=tostring(pattern);
+    
+    for(string word:dict){
+        
+        if(word.length()==len && hash==tostring(word))
+        v.push_back(word);
+        
+    }
+    return v;
+       //Your code here
+}
