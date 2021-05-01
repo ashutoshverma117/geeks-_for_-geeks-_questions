@@ -1,0 +1,28 @@
+Given the following three values, the task is to find the total number of maximum chocolates you can eat. 
+
+money: Money you have to buy chocolates
+price: Price of a chocolate
+wrap: Number of wrappers to be returned for getting one extra chocolate.
+
+
+
+
+
+
+
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int countchoco(int m,int p,int w){
+	int choc=m/p;
+	choc=choc+(choc-1)/(w-1);
+	return choc;
+}
+
+int main(){
+	int m,p,w;
+	cin>>m>>p>>w;
+	cout<<countchoco(m,p,w);
+}
